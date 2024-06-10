@@ -1,0 +1,32 @@
+let handler = async (m, { conn, usedPrefix, command, text }) => {
+    if (!text) {
+        const sections = [
+            {
+                title:  "أنواع البلاغات",
+                rows: [
+                    { title:  "عطل في البوت", rowId: `${usedPrefix + command} عطل في البوت` },
+                    { title:  "اقتراح جديد", rowId: `${usedPrefix + command} اقتراح جديد` },
+                    { title:  "مشكلة تقنية", rowId: `${usedPrefix + command} مشكلة تقنية` },
+                ],
+            },
+        ];
+
+        const listMessage = {
+            text:  "اختر نوع البلاغ الذي تريد تقديمه:",
+            footer:  "بوت البلاغات",
+            title:  "📋 قائمة البلاغات",
+            buttonText:  "اختر البلاغ",
+            sections,
+        };
+
+        await conn.sendMessage(m.chat, listMessage, { quoted: m });
+    } else {
+        let teks = `*✧━━═⊰إبلاغ⊱═━━✧*\n*┬*\n*├❧ الرقم:* wa.me/${m.sender.split('@')[0]}\n*┴*\n*┬*\n*├❧ البلاغ:* ${text}\n*┴*`;
+        await conn.reply('967779151032@s.whatsapp.net', teks, null, { contextInfo: { mentionedJid: [m.sender] } });
+        m.reply(`*[ ✔️ ] تم إرسال البلاغ إلى المسؤول بنجاح. سيتم حل المشكلة في أقرب وقت.*`);
+    }
+}
+
+handler.help = ["بلاغ"]
+handler.tags = ["info"]
+handler.command = /^(بلاغ|report)$/i
