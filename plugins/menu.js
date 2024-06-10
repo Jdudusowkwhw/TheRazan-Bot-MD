@@ -49,6 +49,6 @@
 
 Handler.help = ['معلومات']
 Handler.tags = ['الرئيسي']
-Handler.command = ['بوتون']
+Handler.command = ['اوامر']
 
 معالج التصدير الافتراضي
